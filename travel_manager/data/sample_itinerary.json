@@ -1,0 +1,9 @@
+{
+  "id": "sample-uuid-12345",
+  "title": "Sample: Trip to the Mountains",
+  "poster_filename": "mountain_adventure.jpg",
+  "simplified_itinerary_text": "Day 1: Arrive and trek to base camp.\nDay 2: Summit attempt.\nDay 3: Descend and depart.",
+  "word_document_filename": "detailed_mountain_trek_plan.docx",
+  "detailed_info_text": "This is a challenging but rewarding 3-day trek. Participants should be physically fit. Includes all meals and guide services. Excludes personal gear.",
+  "local_contact_info": "Guide Name: Alex Johnson, Phone: +1-555-TREKKER"
+}
