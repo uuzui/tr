@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ form_title if form_title else 'Manage Itinerary' }} - Travel Organizer{% endblock %}
+{% block content %}
+    <h1>{{ form_title if form_title else 'Add/Edit Itinerary' }}</h1>
+    <form id="itinerary-form" enctype="multipart/form-data">
+        <input type="hidden" id="itinerary_id" name="itinerary_id" value="{{ itinerary.id if itinerary else '' }}">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="{{ itinerary.title if itinerary else '' }}" required>
+        </div>
+        <div>
+            <label for="simplified_itinerary_text">Simplified Itinerary:</label>
+            <textarea id="simplified_itinerary_text" name="simplified_itinerary_text" rows="4" required>{{ itinerary.simplified_itinerary_text if itinerary else '' }}</textarea>
+        </div>
+        <div>
+            <label for="detailed_info_text">Detailed Information:</label>
+            <textarea id="detailed_info_text" name="detailed_info_text" rows="8">{{ itinerary.detailed_info_text if itinerary else '' }}</textarea>
+        </div>
+        <div>
+            <label for="local_contact_info">Local Contact Information:</label>
+            <textarea id="local_contact_info" name="local_contact_info" rows="3">{{ itinerary.local_contact_info if itinerary else '' }}</textarea>
+        </div>
+        <div>
+            <label for="poster_file">Poster Image:</label>
+            <input type="file" id="poster_file" name="poster_file" accept="image/*">
+            {% if itinerary and itinerary.poster_filename %}
+                <p>Current: <img src="{{ url_for('serve_media', type='posters', filename=itinerary.poster_filename) }}" alt="Current Poster" style="max-width: 100px; height: auto; vertical-align: middle; margin-left: 10px;"></p>
+            {% endif %}
+        </div>
+        <div>
+            <label for="word_document_file">Word Document:</label>
+            <input type="file" id="word_document_file" name="word_document_file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+            {% if itinerary and itinerary.word_document_filename %}
+                <p>Current: <a href="{{ url_for('serve_media', type='documents', filename=itinerary.word_document_filename) }}" target="_blank">{{ itinerary.word_document_filename }}</a></p>
+            {% endif %}
+        </div>
+        <button type="submit">Save Itinerary</button>
+    </form>
+    <div id="form-message" style="margin-top: 10px;"></div>
+{% endblock %}

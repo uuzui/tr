@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Itinerary List - Travel Organizer{% endblock %}
+{% block content %}
+    <h1>Available Travel Itineraries</h1>
+    <div id="itinerary-list-container">
+        <p>Loading itineraries...</p>
+    </div>
+    <p><a href="{{ url_for('web_add_itinerary_form') }}" class="button">Add New Itinerary</a></p>
+{% endblock %}

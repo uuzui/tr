@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}{{ itinerary.title if itinerary else 'Itinerary Details' }} - Travel Organizer{% endblock %}
+{% block content %}
+    <div id="itinerary-detail-container">
+        {% if itinerary %}
+            <h1>{{ itinerary.title }}</h1>
+            {% if itinerary.poster_filename %}
+                <img src="{{ url_for('serve_media', type='posters', filename=itinerary.poster_filename) }}" alt="{{ itinerary.title }} Poster" style="max-width: 100%; height: auto; max-height: 400px; display: block; margin-bottom: 15px; border-radius: 4px;">
+            {% else %}
+                <p>No poster available.</p>
+            {% endif %}
+
+            <h2>Simplified Itinerary</h2>
+            <pre>{{ itinerary.simplified_itinerary_text }}</pre>
+
+            <h2>Detailed Information</h2>
+            <pre>{{ itinerary.detailed_info_text }}</pre>
+
+            {% if itinerary.word_document_filename %}
+                <p><a href="{{ url_for('serve_media', type='documents', filename=itinerary.word_document_filename) }}" target="_blank" class="button">Download Detailed Document</a></p>
+            {% else %}
+                <p>No detailed document available.</p>
+            {% endif %}
+
+            <h2>Local Contact</h2>
+            <pre>{{ itinerary.local_contact_info }}</pre>
+
+            <hr>
+            <p>
+                <a href="{{ url_for('web_index') }}" class="button">Back to list</a>
+                <a href="{{ url_for('web_edit_itinerary_form', itinerary_id=itinerary.id) }}" class="button">Edit this itinerary</a>
+                <button class="delete-button button-danger" data-id="{{ itinerary.id }}" style="margin-left: 10px;">Delete This Itinerary</button>
+            </p>
+        {% else %}
+            <p>Itinerary not found. It may have been deleted or the ID is incorrect.</p>
+            <p><a href="{{ url_for('web_index') }}">Go to Homepage</a></p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block scripts_extra %}
+    {# If specific JS is needed for this page other than main.js (which handles delete now) #}
+    {# For example, a lightbox for the image could be initialized here #}
+    <script>
+        // Ensure delete button on this page also gets its event listener if main.js listener attachment is too generic
+        // However, main.js now attaches to any '.delete-button' on DOMContentLoaded, which should cover this.
+        // The main.js was updated to re-query for delete buttons if on the detail page.
+    </script>
+{% endblock %}

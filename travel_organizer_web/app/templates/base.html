@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Travel Organizer{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="{{ url_for('web_index') }}">Travel Organizer</a>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('web_index') }}">Browse Itineraries</a>
+            <a href="{{ url_for('web_add_itinerary_form') }}">Add New Itinerary</a>
+        </div>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; My Travel Organizer App - Your Local Travel Solution</p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts_extra %}{% endblock %}
+</body>
+</html>

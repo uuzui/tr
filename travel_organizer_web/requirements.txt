@@ -1,0 +1,4 @@
+Flask>=2.0
+# Add other Python dependencies if any were introduced.
+# For now, only Flask is explicitly used by the web app server.
+# The itinerary_manager itself doesn't have external dependencies listed.
